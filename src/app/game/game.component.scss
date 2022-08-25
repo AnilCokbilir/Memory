@@ -1,0 +1,55 @@
+.cards {
+    height: 95vh;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin-left: 120px;
+    margin-right: 120px;
+    .underCover {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 64px;
+        margin-right: 64px;
+        margin-bottom: 64px;
+        width: 300px;
+        height: 450px;
+        position: relative;
+        .cover {
+            position: absolute;
+            object-fit: cover;
+        }
+    }
+}
+
+.test {
+    display: none;
+}
+
+img {
+    height: 450px;
+    width: 320px;
+    object-fit: cover;
+    margin-left: 32px;
+    margin-right: 32px;
+    &:hover {
+        animation: takeCard 200ms ease-in;
+        transform: scale(1.2);
+        cursor: pointer;
+    }
+}
+
+.borderRadius {
+    border-radius: 64px;
+    height: 430px;
+}
+
+@keyframes takeCard {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.2);
+    }
+}

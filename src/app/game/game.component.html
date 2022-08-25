@@ -1,0 +1,9 @@
+<div class="cards">
+    <div class="underCover" *ngFor="let card of memoryService.animals; let i = index">
+        <img class="cover borderRadius" src="{{card}}">
+
+        <ng-container *ngIf="!check">
+            <img class="cover coverWidth" (click)="chooseCard(i)" src="assets/img/cover.png" alt="" srcset="">
+        </ng-container>
+    </div>
+</div>
