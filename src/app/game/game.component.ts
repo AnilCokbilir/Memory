@@ -11,21 +11,21 @@ export class GameComponent implements OnInit {
   secondChoose: any;
   choosedTwoCards: number[] = [];
   duplicateAnimals: string[] = [];
-  check: boolean = false;
+  Param: number[] = [];
+  iChoose!: number;
+  iChoose2!: number;
+
   constructor(public memoryService: MemoryServiceService) { }
 
 
   ngOnInit(): void {
 
-    for (var i = 0; i < this.memoryService.animals.length; ++i) {
-      this.duplicateAnimals.push(this.memoryService.animals[i]);
-      this.duplicateAnimals.push(this.memoryService.animals[i]);
-    }
+    // for (let i = 0; i < this.memoryService.animals.length; ++i) {
+    //   this.duplicateAnimals.push(this.memoryService.animals[i]);
+    //   this.duplicateAnimals.push(this.memoryService.animals[i]);
+    // }
 
-    this.memoryService.animals = this.duplicateAnimals;
-
-    console.log(this.memoryService.animals)
-
+    // this.memoryService.animals = this.duplicateAnimals;
     this.shuffle()
   }
 
@@ -42,48 +42,57 @@ export class GameComponent implements OnInit {
   }
 
   chooseCard(i: number) {
-
-    this.check = true;
-
-    if (this.choosedTwoCards.length < 1) {
+    if (this.choosedTwoCards.length == 0) {
       this.choosedTwoCards.push(i);
-      this.firstChoose = this.memoryService.animals[i];
-      this.check = true;
+      this.firstChoose = this.memoryService.animals[i].img;
+
       console.log('ziehen')
-
-
-    } else if (this.choosedTwoCards.length < 2) {
+      this.showCards(i)
+      console.log('first', this.Param)
+    } else if (this.choosedTwoCards.length == 1) {
       this.choosedTwoCards.push(i);
-      this.secondChoose = this.memoryService.animals[i];
+      this.secondChoose = this.memoryService.animals[i].img;
 
+      console.log(this.memoryService.animals)
       console.log('zum 2. mal gezogen')
+      this.showCards(i)
+      console.log('sec', this.Param)
       if (this.firstChoose == this.secondChoose) {
         console.log('win')
+        this.memoryService.animals.splice(this.iChoose, 1);
+        this.memoryService.animals.splice(this.iChoose2, 1);
+        console.log(this.memoryService.animals)
+      } else {
+        setTimeout(() => {
+          this.iChoose = this.Param[0];
+          this.iChoose2 = this.Param[1];
+          console.log('asdfadsf', this.iChoose)
+          this.memoryService.animals[this.iChoose].choosed = false;
+          this.memoryService.animals[this.iChoose2].choosed = false;
+          this.Param = []
+        }, 1500);
       }
     } else {
-      console.log('zwei mal gespielt')
+      console.log('zwei mal gespielt');
       this.choosedTwoCards = [];
       this.firstChoose = '';
       this.secondChoose = '';
       this.chooseCard(i)
     }
+    console.log(this.memoryService.animals)
+
+  }
 
 
+  showCards(i: number) {
+    this.saveParam(i);
+    this.memoryService.animals[i].choosed = true;
+    console.log(this.memoryService.animals[i])
 
+  }
 
-
-    // if (this.choosedTwoCards == false) {
-
-    //   console.log(this.firstChoose);
-    // }
-
-    // if (this.firstChoose == this.secondChoose && this.choosedTwoCards == true) {
-    //   console.log('true')
-    //   this.choosedTwoCards = false;
-
-    //   this.firstChoose = '';
-    //   this.secondChoose = '';
-    // }
+  saveParam(i: number) {
+    this.Param.push(i)
   }
 
 }

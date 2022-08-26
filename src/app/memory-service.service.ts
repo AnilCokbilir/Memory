@@ -5,7 +5,55 @@ import { Injectable } from '@angular/core';
 })
 export class MemoryServiceService {
 
-  animals: any[] = ['./assets/img/löwe.jpg', './assets/img/pferde.jpg', './assets/img/qualle.jpg', './assets/img/schildkröte.jpg', './assets/img/tiger.jpg', './assets/img/vogel.jpg',]
+  animals: any[] = [
+    {
+      'img': './assets/img/löwe.jpg',
+      'choosed': false
+    },
+    {
+      'img': './assets/img/pferde.jpg',
+      'choosed': false
+    },
+    {
+      'img': './assets/img/qualle.jpg',
+      'choosed': false
+    },
+    {
+      'img': './assets/img/schildkröte.jpg',
+      'choosed': false
+    },
+    {
+      'img': './assets/img/tiger.jpg',
+      'choosed': false
+    },
+    {
+      'img': './assets/img/vogel.jpg',
+      'choosed': false
+    }, {
+      'img': './assets/img/löwe.jpg',
+      'choosed': false
+    },
+    {
+      'img': './assets/img/pferde.jpg',
+      'choosed': false
+    },
+    {
+      'img': './assets/img/qualle.jpg',
+      'choosed': false
+    },
+    {
+      'img': './assets/img/schildkröte.jpg',
+      'choosed': false
+    },
+    {
+      'img': './assets/img/tiger.jpg',
+      'choosed': false
+    },
+    {
+      'img': './assets/img/vogel.jpg',
+      'choosed': false
+    },
+  ]
 
   constructor() { }
 
